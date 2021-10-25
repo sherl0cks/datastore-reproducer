@@ -1,0 +1,16 @@
+type SimpleTask @model @key(fields: ["id", "version"]) {
+  id: ID!
+  version: Int!
+  description: String
+  strategy: String
+}
+
+
+type DynamoStyleTask @model @key(fields: ["pk", "sk"]) {
+  id: ID!
+  pk: ID!
+  sk: Int!
+  version: Int!
+  description: String
+  strategy: String
+}

@@ -1,6 +1,21 @@
-# Getting Started with Create React App
+# Datastore Does Not Support DynamoDB Version Control Pattern
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I want to implement the DynamoDB number based versioning pattern with DataStore. There have been various github issues
+on this already:
+- https://github.com/aws-amplify/amplify-js/issues/7950
+- https://github.com/aws-amplify/amplify-js/issues/8810
+
+This reproducer demonstrates that DataStore cannot support more than one instance of `@model` with the same `id`, but 
+this is precisely how one implements the DynamoDB number based versioning pattern.
+
+My suspicion is that the bug is somewhere inside the indexeddb storage adapter which assumes that a model's primary
+key is only defined by `model.id`.
+
+## Usage
+
+Start the application with `npm start` and then create `Tasks` with the different strategies to see the results. Code for the different strategies available in `src/saveStrategies`. 
+
+There is code that can be uncommented in `App.tsx` to connect to a backend, but the same behavior is seen online and offline.
 
 ## Available Scripts
 
